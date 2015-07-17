@@ -6,13 +6,11 @@
        http://www.springframework.org/schema/beans/spring-beans.xsd
        http://www.springframework.org/schema/security
        http://www.springframework.org/schema/security/spring-security.xsd">
-	
-   <!-- HTTP security configurations -->
-	<security:http pattern="/ws/**" create-session="stateless" use-expressions="true" authentication-manager-ref="authenticationManager">
-		<security:http-basic />
-		<security:intercept-url pattern="/ws/hello/*" access="isAuthenticated()" />
-	</security:http>
-	
+       
+       <security:global-method-security 
+       		authentication-manager-ref="authenticationManager" 
+       		secured-annotations="enabled"/>
+
 	<!-- Configure Authentication mechanism -->
 	<security:authentication-manager  alias="authenticationManager">
   		  <security:authentication-provider ref="ldapAuthProvider"/> 
